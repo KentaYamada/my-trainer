@@ -21,6 +21,7 @@
     "vuex": "^3.4.0"
   },
   "devDependencies": {
+    "@firebase/rules-unit-testing": "^2.0.1",
     "@types/jest": "^24.0.19",
     "@types/vuelidate": "^0.7.15",
     "@typescript-eslint/eslint-plugin": "^4.18.0",
