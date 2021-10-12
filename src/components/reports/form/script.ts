@@ -1,10 +1,17 @@
-import Vue from "vue";
+import Vue, { PropType } from "vue";
+import { Report } from "@/models/report";
 
 /**
  * Report form component
  */
 export default Vue.extend({
   name: "report-form",
+  props: {
+    report: {
+      required: true,
+      type: Object as PropType<Report>
+    }
+  },
   methods: {
     handleUpdatePracticeDate(value: Date): void {
       this.$emit("update-practice-date", value);
@@ -32,6 +39,10 @@ export default Vue.extend({
 
     handleUpdateNextAction(value: string): void {
       this.$emit("update-next-action", value);
+    },
+
+    handleUpdateMemo(value: string): void {
+      this.$emit("update-memo", value);
     }
   },
   template: "<report-form/>"

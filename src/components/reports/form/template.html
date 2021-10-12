@@ -3,38 +3,72 @@
         <template #message>
         </template>
         <div class="control">
-            <b-datepicker @input="handleUpdatePracticeDate($event)"></b-datepicker>
+            <b-datepicker
+                :value="report.practice_date"
+                @input="handleUpdatePracticeDate($event)">
+            </b-datepicker>
         </div>
     </b-field>
     <b-field grouped>
         <template #message>
         </template>
         <div class="control">
-            <b-timepicker @input="handleUpdatePracticeTimeFrom($event)"></b-timepicker>
+            <b-timepicker
+                :value="report.practice_time_from"
+                @input="handleUpdatePracticeTimeFrom($event)">
+            </b-timepicker>
         </div>
         <p>〜</p>
         <div class="control">
-            <b-timepicker @input="handleUpdatePracticeTimeTo($event)"></b-timepicker>
+            <b-timepicker
+                :value="report.practice_time_to"
+                @input="handleUpdatePracticeTimeTo($event)">
+            </b-timepicker>
         </div>
     </b-field>
     <b-field label="ゴール">
         <template #message>
         </template>
-        <b-input type="textarea" @input="handleUpdateGoal($event)"></b-input>
+        <b-input
+            type="textarea"
+            :value="report.goal"
+            @input="handleUpdateGoal($event)">
+        </b-input>
     </b-field>
     <b-field label="メニュー">
         <template #message>
         </template>
-        <b-input type="textarea" @input="handleUpdatePlan($event)"></b-input>
+        <b-input
+            type="textarea"
+            :value="report.plan"
+            @input="handleUpdatePlan($event)">
+        </b-input>
     </b-field>
     <b-field label="調子・気づき">
         <template #message>
         </template>
-        <b-input type="textarea" @input="handleUpdateImplessions($event)"></b-input>
+        <b-input
+            type="textarea"
+            :value="report.implessions"
+            @input="handleUpdateImplessions($event)">
+        </b-input>
     </b-field>
     <b-field label="次のアクション">
         <template #message>
         </template>
-        <b-input type="textarea" @input="handleUpdateNextAction($event)"></b-input>
+        <b-input
+            type="textarea"
+            :value="report.next_action"
+            @input="handleUpdateNextAction($event)">
+        </b-input>
+    </b-field>
+    <b-field label="メモ">
+        <template #message>
+        </template>
+        <b-input
+            type="textarea"
+            :value="report.memo"
+            @input="handleUpdateMemo($event)">
+        </b-input>
     </b-field>
 </form>
