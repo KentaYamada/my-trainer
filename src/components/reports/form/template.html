@@ -1,4 +1,22 @@
 <form>
+    <b-field label="トレーニング日時">
+        <template #message>
+        </template>
+        <div class="control">
+            <b-datepicker></b-datepicker>
+        </div>
+    </b-field>
+    <b-field grouped>
+        <template #message>
+        </template>
+        <div class="control">
+            <b-timepicker></b-timepicker>
+        </div>
+        <p>〜</p>
+        <div class="control">
+            <b-timepicker></b-timepicker>
+        </div>
+    </b-field>
     <b-field label="ゴール">
         <template #message>
         </template>
