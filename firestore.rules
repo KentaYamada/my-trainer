@@ -1,6 +1,10 @@
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
+    function isAuth(payload) {
+        return payload != null;
+    }
+
     function validateReportSchema(payload) {
         let whiteList = [
             "practice_date",
@@ -33,7 +37,8 @@ service cloud.firestore {
     }
 
     match /reports/{document} {
-        allow create, update: if validateReportSchema(request.resource.data);
+        allow create, update: if isAuth(request.auth) &&
+                                 validateReportSchema(request.resource.data);
     }
   }
 }
