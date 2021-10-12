@@ -3,38 +3,38 @@
         <template #message>
         </template>
         <div class="control">
-            <b-datepicker></b-datepicker>
+            <b-datepicker @input="handleUpdatePracticeDate($event)"></b-datepicker>
         </div>
     </b-field>
     <b-field grouped>
         <template #message>
         </template>
         <div class="control">
-            <b-timepicker></b-timepicker>
+            <b-timepicker @input="handleUpdatePracticeTimeFrom($event)"></b-timepicker>
         </div>
         <p>〜</p>
         <div class="control">
-            <b-timepicker></b-timepicker>
+            <b-timepicker @input="handleUpdatePracticeTimeTo($event)"></b-timepicker>
         </div>
     </b-field>
     <b-field label="ゴール">
         <template #message>
         </template>
-        <b-input type="textarea"></b-input>
+        <b-input type="textarea" @input="handleUpdateGoal($event)"></b-input>
     </b-field>
     <b-field label="メニュー">
         <template #message>
         </template>
-        <b-input type="textarea"></b-input>
+        <b-input type="textarea" @input="handleUpdatePlan($event)"></b-input>
     </b-field>
     <b-field label="調子・気づき">
         <template #message>
         </template>
-        <b-input type="textarea"></b-input>
+        <b-input type="textarea" @input="handleUpdateImplessions($event)"></b-input>
     </b-field>
     <b-field label="次のアクション">
         <template #message>
         </template>
-        <b-input type="textarea"></b-input>
+        <b-input type="textarea" @input="handleUpdateNextAction($event)"></b-input>
     </b-field>
 </form>
