@@ -8,6 +8,7 @@
         <section class="page-body mt-5">
             <report-form
                 :report="report"
+                :validations="$v"
                 @update-goal="handleUpdateGoal"
                 @update-implessions="handleUpdateImplessions"
                 @update-memo="handleUpdateMemo"
@@ -20,7 +21,13 @@
         </section>
         <footer class="page-footer mt-5">
             <div class="buttons is-right">
-                <b-button type="is-info" icon-left="save" outlined>保存する</b-button>
+                <b-button
+                    type="is-info"
+                    icon-left="save"
+                    outlined
+                    @click="handleSave">
+                    保存する
+                </b-button>
             </div>
         </footer>
     </div>

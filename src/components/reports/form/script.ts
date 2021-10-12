@@ -10,6 +10,10 @@ export default Vue.extend({
     report: {
       required: true,
       type: Object as PropType<Report>
+    },
+    validations: {
+      required: true,
+      type: Object
     }
   },
   methods: {

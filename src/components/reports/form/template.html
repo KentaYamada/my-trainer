@@ -12,13 +12,13 @@
     <b-field grouped>
         <template #message>
         </template>
-        <div class="control">
+        <div class="control mr-0">
             <b-timepicker
                 :value="report.practice_time_from"
                 @input="handleUpdatePracticeTimeFrom($event)">
             </b-timepicker>
         </div>
-        <p>〜</p>
+        <p class="tilda">〜</p>
         <div class="control">
             <b-timepicker
                 :value="report.practice_time_to"
@@ -26,8 +26,11 @@
             </b-timepicker>
         </div>
     </b-field>
-    <b-field label="ゴール">
+    <b-field label="ゴール" :type="{ 'is-danger': validations.report.goal.$error }">
         <template #message>
+            <div v-if="validations.report.goal.$error">
+                <p v-if="!validations.report.goal.required">ゴールを入力してください</p>
+            </div>
         </template>
         <b-input
             type="textarea"
@@ -35,8 +38,11 @@
             @input="handleUpdateGoal($event)">
         </b-input>
     </b-field>
-    <b-field label="メニュー">
+    <b-field label="メニュー" :type="{ 'is-danger': validations.report.plan.$error }">
         <template #message>
+            <div v-if="validations.report.plan.$error">
+                <p v-if="!validations.report.plan.required">メニューを入力してください</p>
+            </div>
         </template>
         <b-input
             type="textarea"
@@ -44,8 +50,11 @@
             @input="handleUpdatePlan($event)">
         </b-input>
     </b-field>
-    <b-field label="調子・気づき">
+    <b-field label="調子・気づき" :type="{ 'is-danger': validations.report.implessions.$error }">
         <template #message>
+            <div v-if="validations.report.implessions.$error">
+                <p v-if="!validations.report.implessions.required">調子・気づきを入力してください</p>
+            </div>
         </template>
         <b-input
             type="textarea"
@@ -53,8 +62,11 @@
             @input="handleUpdateImplessions($event)">
         </b-input>
     </b-field>
-    <b-field label="次のアクション">
+    <b-field label="次のアクション" :type="{ 'is-danger': validations.report.next_action.$error }">
         <template #message>
+            <div v-if="validations.report.next_action.$error">
+                <p v-if="!validations.report.next_action.required">次のアクションを入力してください</p>
+            </div>
         </template>
         <b-input
             type="textarea"

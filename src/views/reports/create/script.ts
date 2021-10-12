@@ -1,5 +1,6 @@
 import Vue from "vue";
 import { mapActions, mapGetters } from "vuex";
+import { required } from "vuelidate/lib/validators";
 import ReportForm from "@/components/reports/form/ReportForm.vue";
 import {
   INITIALIZE,
@@ -43,6 +44,10 @@ export default Vue.extend({
       updatePracticeTimeTo: UPDATE_PRACTICE_TIME_TO
     }),
 
+    handleSave(): void {
+      this.$v.$touch();
+    },
+
     handleUpdatePracticeDate(value: Date): void {
       this.updatePracticeDate(value);
     },
@@ -73,6 +78,22 @@ export default Vue.extend({
 
     handleUpdateMemo(value: string): void {
       this.updateMemo(value);
+    }
+  },
+  validations: {
+    report: {
+      goal: {
+        required
+      },
+      plan: {
+        required
+      },
+      implessions: {
+        required
+      },
+      next_action: {
+        required
+      }
     }
   }
 });
