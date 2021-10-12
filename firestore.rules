@@ -3,6 +3,9 @@ service cloud.firestore {
   match /databases/{database}/documents {
     function validateReportSchema(payload) {
         let whiteList = [
+            "practice_date",
+            "practice_time_from",
+            "practice_time_to",
             "goal",
             "plan",
             "implessions",
@@ -11,8 +14,22 @@ service cloud.firestore {
             "created_at",
             "modified_at"
         ];
-        return (payload.size() == 7) &&
-               (payload.keys().hasAll(whiteList));
+        return (payload.size() == 10) &&
+               (payload.keys().hasAll(whiteList)) &&
+               (payload.practice_date is timestamp) &&
+               (payload.practice_time_from is timestamp) &&
+               (payload.practice_time_to is timestamp) &&
+               (payload.goal is string) &&
+               (payload.goal != "") &&
+               (payload.plan is string) &&
+               (payload.plan != "") &&
+               (payload.implessions is string) &&
+               (payload.implessions != "") &&
+               (payload.next_action is string) &&
+               (payload.next_action != "") &&
+               (payload.memo is string) &&
+               (payload.created_at is timestamp) &&
+               (payload.modified_at is timestamp);
     }
 
     match /reports/{document} {
