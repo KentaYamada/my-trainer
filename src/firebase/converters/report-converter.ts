@@ -18,6 +18,7 @@ export const ReportConverter: FirestoreDataConverter<Report> = {
   },
 
   toFirestore: (payload: Report): DocumentData => {
+    const today = new Date();
     const data: DocumentData = {
       practice_date: payload.practice_date,
       practice_time_from: payload.practice_time_from,
@@ -26,8 +27,14 @@ export const ReportConverter: FirestoreDataConverter<Report> = {
       plan: payload.plan,
       implessions: payload.implessions,
       next_action: payload.next_action,
-      memo: payload.memo
+      memo: payload.memo,
+      modified_at: today
     };
+
+    if (payload.id === "") {
+      data.created_at = today;
+    }
+
     return data;
   }
 };
