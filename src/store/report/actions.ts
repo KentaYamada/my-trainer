@@ -1,9 +1,11 @@
 import { ActionTree } from "vuex";
 import { Report } from "@/models/report";
+import { ReportService } from "@/firebase/report-service";
 import { RootState } from "@/store";
 import { ReportState } from "@/store/report";
 import {
   INITIALIZE,
+  SAVE,
   UPDATE_GOAL,
   UPDATE_IMPLESSIONS,
   UPDATE_MEMO,
@@ -21,39 +23,45 @@ const actions: ActionTree<ReportState, RootState> = {
     commit(UPDATE_REPORT, payload);
   },
 
-  [UPDATE_GOAL]: ({ commit }, payload: string): void => {
+  [SAVE]: ({ commit }, payload: Report) => {
+    if (payload.id === "") {
+      return ReportService.create(payload);
+    }
+  },
+
+  [UPDATE_GOAL]: ({ commit }, payload: string) => {
     commit(UPDATE_GOAL, payload);
   },
 
-  [UPDATE_IMPLESSIONS]: ({ commit }, payload: string): void => {
+  [UPDATE_IMPLESSIONS]: ({ commit }, payload: string) => {
     commit(UPDATE_IMPLESSIONS, payload);
   },
 
-  [UPDATE_MEMO]: ({ commit }, payload: string): void => {
+  [UPDATE_MEMO]: ({ commit }, payload: string) => {
     commit(UPDATE_MEMO, payload);
   },
 
-  [UPDATE_NEXT_ACTION]: ({ commit }, payload: string): void => {
+  [UPDATE_NEXT_ACTION]: ({ commit }, payload: string) => {
     commit(UPDATE_NEXT_ACTION, payload);
   },
 
-  [UPDATE_PLAN]: ({ commit }, payload: string): void => {
+  [UPDATE_PLAN]: ({ commit }, payload: string) => {
     commit(UPDATE_PLAN, payload);
   },
 
-  [UPDATE_PRACTICE_DATE]: ({ commit }, payload: Date): void => {
+  [UPDATE_PRACTICE_DATE]: ({ commit }, payload: Date) => {
     commit(UPDATE_PRACTICE_DATE, payload);
   },
 
-  [UPDATE_PRACTICE_TIME_FROM]: ({ commit }, payload: Date): void => {
+  [UPDATE_PRACTICE_TIME_FROM]: ({ commit }, payload: Date) => {
     commit(UPDATE_PRACTICE_TIME_FROM, payload);
   },
 
-  [UPDATE_PRACTICE_TIME_TO]: ({ commit }, payload: Date): void => {
+  [UPDATE_PRACTICE_TIME_TO]: ({ commit }, payload: Date) => {
     commit(UPDATE_PRACTICE_TIME_TO, payload);
   },
 
-  [UPDATE_REPORT]: ({ commit }, payload: Report): void => {
+  [UPDATE_REPORT]: ({ commit }, payload: Report) => {
     commit(UPDATE_REPORT, payload);
   }
 };
