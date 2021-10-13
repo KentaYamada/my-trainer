@@ -10,7 +10,7 @@ export class ReportService {
   static readonly COLLECTION_NAME = "reports";
 
   static async create(payload: Report): Promise<DocumentReference<Report>> {
-    const newDoc = collection(db, "reports").withConverter(ReportConverter);
+    const newDoc = collection(db, ReportService.COLLECTION_NAME).withConverter(ReportConverter);
     return await addDoc(newDoc, payload);
   }
 }
