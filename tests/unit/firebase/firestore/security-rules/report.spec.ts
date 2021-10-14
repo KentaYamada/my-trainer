@@ -1,4 +1,4 @@
-import { setDoc, DocumentData } from "firebase/firestore";
+import { collection, deleteDoc, doc, getDoc, getDocs, setDoc, writeBatch, DocumentData } from "firebase/firestore";
 import { assertFails, assertSucceeds, RulesTestContext } from "@firebase/rules-unit-testing";
 import { clearUpFirestoreData, clearUpTestApp, getAuthorizedContext } from "./test-app";
 
@@ -270,6 +270,109 @@ describe("reports collection security tests", () => {
       const context: RulesTestContext = await getAuthorizedContext();
       const doc = context.firestore().collection("reports").doc();
       await assertFails(setDoc(doc, data));
+    });
+  });
+
+  describe("delete tests", () => {
+    const ID = "test";
+
+    beforeEach(async () => {
+      const data: DocumentData = {
+        practice_date: new Date(),
+        practice_time_from: new Date(),
+        practice_time_to: new Date(),
+        goal: "Test complete",
+        plan: "test",
+        implessions: "So great",
+        next_action: "nothing",
+        memo: "",
+        created_at: new Date(),
+        modified_at: new Date()
+      };
+      const context: RulesTestContext = await getAuthorizedContext();
+      await setDoc(doc(context.firestore(), "reports", ID), data);
+    });
+
+    it("[positive] delete succeeded", async () => {
+      const context: RulesTestContext = await getAuthorizedContext();
+      const docRef = doc(context.firestore(), "reports", ID);
+      await assertSucceeds(deleteDoc(docRef));
+
+      const snapshot = await getDoc(docRef);
+      expect(snapshot.exists()).toBeFalsy();
+    });
+  });
+
+  describe("get rule tests", () => {
+    const ID = "test";
+
+    beforeEach(async () => {
+      const data: DocumentData = {
+        practice_date: new Date(),
+        practice_time_from: new Date(),
+        practice_time_to: new Date(),
+        goal: "Test complete",
+        plan: "test",
+        implessions: "So great",
+        next_action: "nothing",
+        memo: "",
+        created_at: new Date(),
+        modified_at: new Date()
+      };
+      const context: RulesTestContext = await getAuthorizedContext();
+      await setDoc(doc(context.firestore(), "reports", ID), data);
+    });
+
+    it("[positive] get document succeeded", async () => {
+      const context: RulesTestContext = await getAuthorizedContext();
+      const snapshot = await getDoc(doc(context.firestore(), "reports", ID));
+      expect(snapshot.exists()).toBeTruthy();
+      expect(snapshot.id).toBe(ID);
+    });
+  });
+
+  describe("list rule tests", () => {
+    beforeEach(async () => {
+      const context: RulesTestContext = await getAuthorizedContext();
+      const batch = writeBatch(context.firestore());
+      const docs: DocumentData[] = [
+        {
+          practice_date: new Date(),
+          practice_time_from: new Date(),
+          practice_time_to: new Date(),
+          goal: "Test complete",
+          plan: "test",
+          implessions: "So great",
+          next_action: "nothing",
+          memo: "",
+          created_at: new Date(),
+          modified_at: new Date()
+        },
+        {
+          practice_date: new Date(),
+          practice_time_from: new Date(),
+          practice_time_to: new Date(),
+          goal: "Test complete",
+          plan: "test",
+          implessions: "So great",
+          next_action: "nothing",
+          memo: "",
+          created_at: new Date(),
+          modified_at: new Date()
+        }
+      ];
+      docs.forEach((d: DocumentData) => {
+        const newDocRef = doc(collection(context.firestore(), "reports"));
+        batch.set(newDocRef, d);
+      });
+      await batch.commit();
+    });
+
+    it("[positive] fetch list succeeded", async () => {
+      const context: RulesTestContext = await getAuthorizedContext();
+      const snapshot = await getDocs(collection(context.firestore(), "reports"));
+      expect(snapshot.empty).toBeFalsy();
+      expect(snapshot.size).toBe(2);
     });
   });
 });
