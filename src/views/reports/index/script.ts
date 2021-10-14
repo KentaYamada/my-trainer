@@ -15,7 +15,27 @@ export default Vue.extend({
   data() {
     const options: CalendarOptions = {
       plugins: [dayGridPlugin],
-      initialView: "dayGridMonth"
+      initialView: "dayGridMonth",
+      locale: "ja",
+      timeZone: "Asia/Tokyo",
+      headerToolbar: {
+        start: "today prev,next",
+        center: "title",
+        end: "createReportButton"
+      },
+      buttonText: {
+        today: "今日"
+      },
+      businessHours: true,
+      navLinks: false,
+      customButtons: {
+        createReportButton: {
+          text: "レポート作成",
+          click: () => {
+            this.$router.push({ name: "ReportCreate" });
+          }
+        }
+      }
     };
 
     return {
