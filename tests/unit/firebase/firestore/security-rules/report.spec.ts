@@ -1,4 +1,16 @@
-import { collection, deleteDoc, doc, getDoc, getDocs, setDoc, writeBatch, DocumentData } from "firebase/firestore";
+import {
+  collection,
+  deleteDoc,
+  doc,
+  getDoc,
+  getDocs,
+  setDoc,
+  writeBatch,
+  DocumentData,
+  DocumentReference,
+  QuerySnapshot,
+  WriteBatch
+} from "firebase/firestore";
 import { assertFails, assertSucceeds, RulesTestContext } from "@firebase/rules-unit-testing";
 import { clearUpFirestoreData, clearUpTestApp, getAuthorizedContext } from "./test-app";
 
@@ -334,7 +346,8 @@ describe("reports collection security tests", () => {
   describe("list rule tests", () => {
     beforeEach(async () => {
       const context: RulesTestContext = await getAuthorizedContext();
-      const batch = writeBatch(context.firestore());
+      const db = context.firestore();
+      const batch: WriteBatch = writeBatch(db);
       const docs: DocumentData[] = [
         {
           practice_date: new Date(),
@@ -362,7 +375,7 @@ describe("reports collection security tests", () => {
         }
       ];
       docs.forEach((d: DocumentData) => {
-        const newDocRef = doc(collection(context.firestore(), "reports"));
+        const newDocRef: DocumentReference<DocumentData> = doc(collection(db, "reports"));
         batch.set(newDocRef, d);
       });
       await batch.commit();
@@ -370,7 +383,7 @@ describe("reports collection security tests", () => {
 
     it("[positive] fetch list succeeded", async () => {
       const context: RulesTestContext = await getAuthorizedContext();
-      const snapshot = await getDocs(collection(context.firestore(), "reports"));
+      const snapshot: QuerySnapshot<DocumentData> = await getDocs(collection(context.firestore(), "reports"));
       expect(snapshot.empty).toBeFalsy();
       expect(snapshot.size).toBe(2);
     });
