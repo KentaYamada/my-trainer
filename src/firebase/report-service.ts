@@ -48,4 +48,24 @@ export class ReportService {
 
     return transaction;
   }
+
+  static async delete(id: string): Promise<void> {
+    const transaction = runTransaction(db, async (transaction: Transaction) => {
+      if (id === "") {
+        return Promise.reject(new BadRequest("IDをセットしてください"));
+      }
+
+      const docRef: DocumentReference<Report> = doc(db, ReportService.COLLECTION_NAME, id).withConverter(
+        ReportConverter
+      );
+      const snapshot: DocumentSnapshot<Report> = await transaction.get(docRef);
+      if (!snapshot.exists()) {
+        return Promise.reject(new NotFound("データが見つかりませんでした"));
+      }
+
+      transaction.delete(docRef);
+    });
+
+    return transaction;
+  }
 }
