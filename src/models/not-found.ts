@@ -8,8 +8,8 @@ export class NotFound implements FirestoreError {
   message: string;
   name: string;
 
-  constructor(code: FirestoreErrorCode, message: string) {
-    this.code = code;
+  constructor(message: string) {
+    this.code = "not-found";
     this.message = message;
     this.name = "NotFound";
   }
