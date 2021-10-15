@@ -76,7 +76,13 @@ export default Vue.extend({
       if (!this.$v.$invalid) {
         this.progressing = true;
         this.save(this.report)
-          .then(() => this._showToastSuccess("保存しました"))
+          .then(() => {
+            this._showToastSuccess("保存しました");
+
+            if (this.id !== "") {
+              this.$router.push({ name: "ReportDetail", params: { id: this.id } });
+            }
+          })
           .catch((error: FirestoreError) => this._showToastDanger(error.message))
           .finally(() => (this.progressing = false));
       } else {

@@ -40,6 +40,8 @@ const actions: ActionTree<ReportState, RootState> = {
     // eslint-disable-line no-unused-vars
     if (payload.id === "") {
       return ReportService.create(payload);
+    } else {
+      return ReportService.edit(payload);
     }
   },
 
