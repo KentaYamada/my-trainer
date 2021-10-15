@@ -1,5 +1,5 @@
 import Vue from "vue";
-import VueRouter, { RouteConfig } from "vue-router";
+import VueRouter, { RouteConfig, Route } from "vue-router";
 
 Vue.use(VueRouter);
 
@@ -19,6 +19,14 @@ const routes: Array<RouteConfig> = [
     path: "/reports/create",
     name: "ReportCreate",
     component: () => import(/* webpackChunkName: "report-create" */ "@/views/reports/create/ReportCreateView.vue")
+  },
+  {
+    path: "/reports/detail/:id",
+    name: "ReportDetail",
+    props: (router: Route) => ({
+      id: router.params.id
+    }),
+    component: () => import(/* webpackChunkName: "report-detail" */ "@/views/reports/detail/ReportDetailView.vue")
   }
 ];
 
