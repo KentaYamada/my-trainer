@@ -4,6 +4,7 @@ import { ReportService } from "@/firebase/report-service";
 import { RootState } from "@/store";
 import { ReportState } from "@/store/report";
 import {
+  DELETE,
   FETCH_REPORT_BY_ID,
   INITIALIZE,
   SAVE,
@@ -19,6 +20,11 @@ import {
 } from "@/store/report/constant";
 
 const actions: ActionTree<ReportState, RootState> = {
+  [DELETE]: async ({ commit }, payload: string) => {
+    // eslint-disable-line no-unused-vars
+    return await ReportService.delete(payload);
+  },
+
   [FETCH_REPORT_BY_ID]: async ({ commit }, payload: string) => {
     return await ReportService.fetchById(payload).then((data: Report) => {
       commit(UPDATE_REPORT, data);
@@ -31,6 +37,7 @@ const actions: ActionTree<ReportState, RootState> = {
   },
 
   [SAVE]: ({ commit }, payload: Report) => {
+    // eslint-disable-line no-unused-vars
     if (payload.id === "") {
       return ReportService.create(payload);
     }
