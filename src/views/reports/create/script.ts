@@ -1,9 +1,11 @@
 import Vue from "vue";
 import { mapActions, mapGetters } from "vuex";
 import { BNoticeConfig } from "buefy/types/components";
+import { FirestoreError } from "firebase/firestore";
 import { required } from "vuelidate/lib/validators";
 import ReportForm from "@/components/reports/form/ReportForm.vue";
 import {
+  FETCH_REPORT_BY_ID,
   INITIALIZE,
   REPORT,
   SAVE,
@@ -16,7 +18,6 @@ import {
   UPDATE_PRACTICE_TIME_FROM,
   UPDATE_PRACTICE_TIME_TO
 } from "@/store/report/constant";
-import { FirestoreError } from "firebase/firestore";
 
 /**
  * Report create view
@@ -25,6 +26,13 @@ export default Vue.extend({
   name: "report-create-view",
   components: {
     ReportForm
+  },
+  props: {
+    id: {
+      required: false,
+      type: String,
+      default: ""
+    }
   },
   data() {
     return {
@@ -36,11 +44,20 @@ export default Vue.extend({
       report: REPORT
     })
   },
-  mounted() {
+  created() {
     this.initialize();
+  },
+  mounted() {
+    if (this.id !== "") {
+      this.progressing = true;
+      this.fetchReportById(this.id)
+        .catch((error: FirestoreError) => this._showToastDanger(error.message))
+        .finally(() => (this.progressing = false));
+    }
   },
   methods: {
     ...mapActions("report", {
+      fetchReportById: FETCH_REPORT_BY_ID,
       initialize: INITIALIZE,
       save: SAVE,
       updateGoal: UPDATE_GOAL,

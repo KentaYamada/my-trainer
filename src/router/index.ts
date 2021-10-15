@@ -27,6 +27,14 @@ const routes: Array<RouteConfig> = [
       id: router.params.id
     }),
     component: () => import(/* webpackChunkName: "report-detail" */ "@/views/reports/detail/ReportDetailView.vue")
+  },
+  {
+    path: "/reports/edit/:id",
+    name: "ReportEdit",
+    props: (router: Route) => ({
+      id: router.params.id
+    }),
+    component: () => import(/* webpackChunkName: "report-edit" */ "@/views/reports/create/ReportCreateView.vue")
   }
 ];
 
