@@ -2,6 +2,7 @@ import {
   addDoc,
   collection,
   doc,
+  getDoc,
   runTransaction,
   CollectionReference,
   DocumentReference,
@@ -67,5 +68,21 @@ export class ReportService {
     });
 
     return transaction;
+  }
+
+  static async fetchById(id: string): Promise<Report> {
+    if (id === "") {
+      return Promise.reject(new BadRequest("IDをセットしてください"));
+    }
+
+    const docRef: DocumentSnapshot<Report> = await getDoc(
+      doc(db, ReportService.COLLECTION_NAME, id).withConverter(ReportConverter)
+    );
+    const data: Report | undefined = docRef.data();
+    if (!data) {
+      return Promise.reject(new NotFound("データが見つかりませんでした"));
+    }
+
+    return data;
   }
 }

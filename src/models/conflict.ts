@@ -8,8 +8,8 @@ export class Conflict implements FirestoreError {
   message: string;
   name: string;
 
-  constructor(code: FirestoreErrorCode, message: string) {
-    this.code = code;
+  constructor(message: string) {
+    this.code = "aborted";
     this.message = message;
     this.name = "Conflict";
   }

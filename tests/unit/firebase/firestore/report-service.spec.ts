@@ -126,4 +126,48 @@ describe("ReportService tests", () => {
       });
     });
   });
+
+  describe("fetchById methods", () => {
+    const ID = "test_id";
+
+    beforeEach(async () => {
+      const payload: DocumentData = {
+        practice_date: new Date(),
+        practice_time_from: new Date(),
+        practice_time_to: new Date(),
+        goal: "Test complete",
+        plan: "test",
+        implessions: "So great",
+        next_action: "nothing",
+        memo: "",
+        created_at: new Date(),
+        modified_at: new Date()
+      };
+      const docRef = doc(db, "reports", ID);
+      await setDoc(docRef, payload);
+    });
+
+    it("[positive] fetch succeeded", async () => {
+      await ReportService.fetchById(ID).then((data: Report) => {
+        expect(data).not.toBeUndefined();
+        expect(data.id).toBe(ID);
+      });
+    });
+
+    it("[negative] report id is empty", async () => {
+      await ReportService.fetchById("").catch((error: FirestoreError) => {
+        expect(error.code).toBe("aborted");
+        expect(error.name).toBe("BadRequest");
+        expect(error.message).toBe("IDをセットしてください");
+      });
+    });
+
+    it("[negative] report is not exists", async () => {
+      await ReportService.fetchById("not_exist_document").catch((error: FirestoreError) => {
+        expect(error.code).toBe("not-found");
+        expect(error.name).toBe("NotFound");
+        expect(error.message).toBe("データが見つかりませんでした");
+      });
+    });
+  });
 });
