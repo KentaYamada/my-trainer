@@ -6,16 +6,17 @@ import {
   setDoc,
   writeBatch,
   DocumentData,
+  DocumentSnapshot,
   FirestoreError,
-  DocumentSnapshot
+  WriteBatch
 } from "firebase/firestore";
-import { Report } from "@/models/report";
 import { db } from "@/firebase/firebase-app";
 import { ReportService } from "@/firebase/report-service";
+import { Report } from "@/models/report";
 
 describe("ReportService tests", () => {
   afterEach(async () => {
-    const batch = writeBatch(db);
+    const batch: WriteBatch = writeBatch(db);
     const querySnapshot = await getDocs(collection(db, "reports"));
 
     querySnapshot.forEach(snap => batch.delete(snap.ref));

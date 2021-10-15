@@ -21,6 +21,10 @@ import { Report } from "@/models/report";
 export class ReportService {
   static readonly COLLECTION_NAME = "reports";
 
+  private static getDocument(id: string): DocumentReference<Report> {
+    return doc(db, ReportService.COLLECTION_NAME, id).withConverter(ReportConverter);
+  }
+
   static async create(payload: Report): Promise<DocumentReference<Report>> {
     const newDoc: CollectionReference<Report> = collection(db, ReportService.COLLECTION_NAME).withConverter(
       ReportConverter
@@ -34,9 +38,7 @@ export class ReportService {
         return Promise.reject(new BadRequest("IDをセットしてください"));
       }
 
-      const docRef: DocumentReference<Report> = doc(db, ReportService.COLLECTION_NAME, payload.id).withConverter(
-        ReportConverter
-      );
+      const docRef: DocumentReference<Report> = ReportService.getDocument(payload.id);
       const snapshot: DocumentSnapshot<Report> = await transaction.get(docRef);
       if (!snapshot.exists()) {
         return Promise.reject(new NotFound("データが見つかりませんでした"));
@@ -56,9 +58,7 @@ export class ReportService {
         return Promise.reject(new BadRequest("IDをセットしてください"));
       }
 
-      const docRef: DocumentReference<Report> = doc(db, ReportService.COLLECTION_NAME, id).withConverter(
-        ReportConverter
-      );
+      const docRef: DocumentReference<Report> = ReportService.getDocument(id);
       const snapshot: DocumentSnapshot<Report> = await transaction.get(docRef);
       if (!snapshot.exists()) {
         return Promise.reject(new NotFound("データが見つかりませんでした"));
@@ -75,9 +75,7 @@ export class ReportService {
       return Promise.reject(new BadRequest("IDをセットしてください"));
     }
 
-    const docRef: DocumentSnapshot<Report> = await getDoc(
-      doc(db, ReportService.COLLECTION_NAME, id).withConverter(ReportConverter)
-    );
+    const docRef: DocumentSnapshot<Report> = await getDoc(ReportService.getDocument(id));
     const data: Report | undefined = docRef.data();
     if (!data) {
       return Promise.reject(new NotFound("データが見つかりませんでした"));
