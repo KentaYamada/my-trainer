@@ -1,5 +1,5 @@
 import Vue, { PropType } from "vue";
-import { BDialogConfig } from "buefy/types/components";
+import { nl2br } from "@/filters/nl2br";
 import { Report } from "@/models/report";
 
 /**
@@ -13,16 +13,28 @@ export default Vue.extend({
       type: Object as PropType<Report>
     }
   },
-  methods: {
-    handleDelete(): void {
-      const config: BDialogConfig = {
-        message: "データを削除します。よろしいですか？"
-      };
-      this.$buefy.dialog.confirm(config);
+  filters: {
+    nl2br
+  },
+  computed: {
+    goal(): string {
+      return nl2br(this.report.goal);
     },
 
-    handleEdit(): void {
-      this.$emit("edit-report", this.report.id);
+    plan(): string {
+      return nl2br(this.report.plan);
+    },
+
+    implessions(): string {
+      return nl2br(this.report.implessions);
+    },
+
+    next_action(): string {
+      return nl2br(this.report.next_action);
+    },
+
+    memo(): string {
+      return nl2br(this.report.memo);
     }
   },
   template: "<report-detail/>"

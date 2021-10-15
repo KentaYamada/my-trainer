@@ -1,3 +1,5 @@
+export const FETCH_REPORT_BY_ID = "fetch-report-by-id";
+
 export const INITIALIZE = "initialize";
 
 export const REPORT = "report";

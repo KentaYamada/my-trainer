@@ -4,6 +4,7 @@ import { ReportService } from "@/firebase/report-service";
 import { RootState } from "@/store";
 import { ReportState } from "@/store/report";
 import {
+  FETCH_REPORT_BY_ID,
   INITIALIZE,
   SAVE,
   UPDATE_GOAL,
@@ -18,6 +19,12 @@ import {
 } from "@/store/report/constant";
 
 const actions: ActionTree<ReportState, RootState> = {
+  [FETCH_REPORT_BY_ID]: async ({ commit }, payload: string) => {
+    return await ReportService.fetchById(payload).then((data: Report) => {
+      commit(UPDATE_REPORT, data);
+    });
+  },
+
   [INITIALIZE]: ({ commit }) => {
     const payload = new Report("", new Date(), new Date(), new Date(), "", "", "", "", "");
     commit(UPDATE_REPORT, payload);
