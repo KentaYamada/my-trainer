@@ -1,8 +1,7 @@
 import Vue from "vue";
-import "@fullcalendar/core/vdom";
-import { CalendarOptions } from "@fullcalendar/core";
+import { mapActions, mapGetters } from "vuex";
 import FullCalendar from "@fullcalendar/vue";
-import dayGridPlugin from "@fullcalendar/daygrid";
+import { CALENDAR_OPTIONS, INITIALIZE_OPTIONS } from "@/store/calendar/constatnt";
 
 /**
  * Report index view
@@ -12,34 +11,17 @@ export default Vue.extend({
   components: {
     FullCalendar
   },
-  data() {
-    const options: CalendarOptions = {
-      plugins: [dayGridPlugin],
-      initialView: "dayGridMonth",
-      locale: "ja",
-      timeZone: "Asia/Tokyo",
-      headerToolbar: {
-        start: "today prev,next",
-        center: "title",
-        end: "createReportButton"
-      },
-      buttonText: {
-        today: "今日"
-      },
-      businessHours: true,
-      navLinks: false,
-      customButtons: {
-        createReportButton: {
-          text: "レポート作成",
-          click: () => {
-            this.$router.push({ name: "ReportCreate" });
-          }
-        }
-      }
-    };
-
-    return {
-      options: options
-    };
+  computed: {
+    ...mapGetters("calendar", {
+      options: CALENDAR_OPTIONS
+    })
+  },
+  created() {
+    this.initializeOptions();
+  },
+  methods: {
+    ...mapActions("calendar", {
+      initializeOptions: INITIALIZE_OPTIONS
+    })
   }
 });
