@@ -11,10 +11,6 @@
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.15.4",
-    "@fullcalendar/core": "^5.9.0",
-    "@fullcalendar/daygrid": "^5.9.0",
-    "@fullcalendar/timegrid": "^5.10.0",
-    "@fullcalendar/vue": "^5.9.0",
     "buefy": "^0.9.10",
     "core-js": "^3.6.5",
     "firebase": "^9.1.2",
