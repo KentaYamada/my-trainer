@@ -3,10 +3,13 @@ import {
   collection,
   doc,
   getDoc,
+  getDocs,
   runTransaction,
   CollectionReference,
   DocumentReference,
   DocumentSnapshot,
+  QuerySnapshot,
+  QueryDocumentSnapshot,
   Transaction
 } from "firebase/firestore";
 import { ReportConverter } from "@/firebase/converters/report-converter";
@@ -21,15 +24,16 @@ import { Report } from "@/models/report";
 export class ReportService {
   static readonly COLLECTION_NAME = "reports";
 
+  private static getCollection(): CollectionReference<Report> {
+    return collection(db, ReportService.COLLECTION_NAME).withConverter(ReportConverter);
+  }
+
   private static getDocument(id: string): DocumentReference<Report> {
     return doc(db, ReportService.COLLECTION_NAME, id).withConverter(ReportConverter);
   }
 
   static async create(payload: Report): Promise<DocumentReference<Report>> {
-    const newDoc: CollectionReference<Report> = collection(db, ReportService.COLLECTION_NAME).withConverter(
-      ReportConverter
-    );
-    return await addDoc(newDoc, payload);
+    return await addDoc(ReportService.getCollection(), payload);
   }
 
   static async edit(payload: Report): Promise<DocumentReference<Report>> {
@@ -68,6 +72,11 @@ export class ReportService {
     });
 
     return transaction;
+  }
+
+  static async fetch(): Promise<Report[]> {
+    const snapshot: QuerySnapshot<Report> = await getDocs(ReportService.getCollection());
+    return snapshot.docs.map((d: QueryDocumentSnapshot<Report>) => d.data());
   }
 
   static async fetchById(id: string): Promise<Report> {
