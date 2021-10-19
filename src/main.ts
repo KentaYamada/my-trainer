@@ -1,6 +1,7 @@
 import Vue from "vue";
 import Buefy from "buefy";
 import Vuelidate from "vuelidate";
+import VCalendar from "v-calendar";
 import App from "@/views/app/App.vue";
 import "./registerServiceWorker";
 import router from "./router";
@@ -12,6 +13,7 @@ import "@fortawesome/fontawesome-free/css/fontawesome.css";
 Vue.config.productionTip = false;
 Vue.use(Buefy, { defaultIconPack: "fas" });
 Vue.use(Vuelidate);
+Vue.use(VCalendar);
 
 new Vue({
   router,
