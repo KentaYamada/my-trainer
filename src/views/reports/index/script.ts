@@ -11,5 +11,10 @@ export default Vue.extend({
   components: {
     CalendarEvents,
     CalendarHeader
+  },
+  data() {
+    return {
+      current: new Date()
+    };
   }
 });
