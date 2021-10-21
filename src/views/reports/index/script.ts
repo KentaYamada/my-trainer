@@ -16,5 +16,22 @@ export default Vue.extend({
     return {
       current: new Date()
     };
+  },
+  methods: {
+    handleCurrent(): void {
+      this.current = new Date();
+    },
+
+    handleCreateReport(): void {
+      this.$router.push({ name: "ReportCreate" });
+    },
+
+    handleNextMonth(): void {
+      this.current.setMonth(this.current.getMonth() + 1);
+    },
+
+    handlePreviousMonth(): void {
+      this.current.setMonth(this.current.getMonth() - 1);
+    }
   }
 });
