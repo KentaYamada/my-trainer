@@ -1,5 +1,7 @@
 import Vue from "vue";
 import { mapActions, mapGetters } from "vuex";
+import { BNoticeConfig } from "buefy/types/components";
+import { FirestoreError } from "firebase/firestore";
 import CalendarEvents from "@/components/calendars/events/CalendarEvents.vue";
 import CalendarHeader from "@/components/calendars/header/CalendarHeader.vue";
 import {
@@ -35,7 +37,7 @@ export default Vue.extend({
     this.initializeOption();
   },
   mounted() {
-    this.fetchCalendarEvents();
+    this._fetch();
   },
   methods: {
     ...mapActions("calendar", {
@@ -55,10 +57,25 @@ export default Vue.extend({
 
     handleNextMonth(): void {
       this.updateNextMonth();
+      this._fetch();
     },
 
     handlePreviousMonth(): void {
       this.updatePreviousMonth();
+      this._fetch();
+    },
+
+    _fetch(): void {
+      this.progressing = true;
+      this.fetchCalendarEvents(this.calendarOption)
+        .catch((error: FirestoreError) => {
+          const config: BNoticeConfig = {
+            type: "is-danger",
+            message: error.message
+          };
+          this.$buefy.toast.open(config);
+        })
+        .finally(() => (this.progressing = false));
     }
   }
 });

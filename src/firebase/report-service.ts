@@ -2,12 +2,16 @@ import {
   addDoc,
   collection,
   doc,
+  endAt,
   getDoc,
   getDocs,
+  query,
   runTransaction,
+  startAt,
   CollectionReference,
   DocumentReference,
   DocumentSnapshot,
+  Query,
   QuerySnapshot,
   QueryDocumentSnapshot,
   Transaction
@@ -74,8 +78,9 @@ export class ReportService {
     return transaction;
   }
 
-  static async fetch(): Promise<Report[]> {
-    const snapshot: QuerySnapshot<Report> = await getDocs(ReportService.getCollection());
+  static async fetch(fromDate: Date, toDate: Date): Promise<Report[]> {
+    const q: Query<Report> = query(ReportService.getCollection(), startAt(fromDate), endAt(toDate));
+    const snapshot: QuerySnapshot<Report> = await getDocs(q);
     return snapshot.docs.map((d: QueryDocumentSnapshot<Report>) => d.data());
   }
 
