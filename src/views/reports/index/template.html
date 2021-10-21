@@ -9,12 +9,11 @@
             <section class="page-body mt-5">
                 <div class="calendar-header-container">
                     <calendar-header
-                        :current="current"
+                        :current="calendarOption.current"
                         @current="handleCurrent"
                         @create-report="handleCreateReport"
                         @next-month="handleNextMonth"
-                        @previous-month="handlePreviousMonth"
-                    >
+                        @previous-month="handlePreviousMonth">
                     </calendar-header>
                 </div>
                 <div class="calendar-events-container">

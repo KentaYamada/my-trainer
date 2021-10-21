@@ -1,7 +1,13 @@
 import Vue from "vue";
-// import { mapActions, mapGetters } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 import CalendarEvents from "@/components/calendars/events/CalendarEvents.vue";
 import CalendarHeader from "@/components/calendars/header/CalendarHeader.vue";
+import {
+  INITIALIZE_OPTION,
+  CALENDAR_OPTION,
+  UPDATE_NEXT_MONTH,
+  UPDATE_PREVIOUS_MONTH
+} from "@/store/calendar/constatnt";
 
 /**
  * Report index view
@@ -12,14 +18,23 @@ export default Vue.extend({
     CalendarEvents,
     CalendarHeader
   },
-  data() {
-    return {
-      current: new Date()
-    };
+  computed: {
+    ...mapGetters("calendar", {
+      calendarOption: CALENDAR_OPTION
+    })
+  },
+  created() {
+    this.initializeOption();
   },
   methods: {
+    ...mapActions("calendar", {
+      initializeOption: INITIALIZE_OPTION,
+      updateNextMonth: UPDATE_NEXT_MONTH,
+      updatePreviousMonth: UPDATE_PREVIOUS_MONTH
+    }),
+
     handleCurrent(): void {
-      this.current = new Date();
+      this.initializeOption();
     },
 
     handleCreateReport(): void {
@@ -27,11 +42,11 @@ export default Vue.extend({
     },
 
     handleNextMonth(): void {
-      this.current.setMonth(this.current.getMonth() + 1);
+      this.updateNextMonth();
     },
 
     handlePreviousMonth(): void {
-      this.current.setMonth(this.current.getMonth() - 1);
+      this.updatePreviousMonth();
     }
   }
 });

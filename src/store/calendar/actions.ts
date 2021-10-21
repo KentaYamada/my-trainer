@@ -1,39 +1,21 @@
-import "@fullcalendar/core/vdom";
-import { CalendarOptions } from "@fullcalendar/core";
-import dayGridPlugin from "@fullcalendar/daygrid";
-// import timeGridPlugin from "@fullcalendar/timegrid";
 import { ActionTree } from "vuex";
+import { CalendarEventOption } from "@/models/calendar-event-option";
 import { RootState } from "@/store";
 import { CalendarState } from "@/store/calendar";
-import { INITIALIZE_OPTIONS, UPDATE_OPTIONS } from "@/store/calendar/constatnt";
+import { INITIALIZE_OPTION, UPDATE_OPTION, UPDATE_NEXT_MONTH, UPDATE_PREVIOUS_MONTH } from "@/store/calendar/constatnt";
 
 const actions: ActionTree<CalendarState, RootState> = {
-  [INITIALIZE_OPTIONS]: ({ commit }) => {
-    const options: CalendarOptions = {
-      plugins: [dayGridPlugin],
-      initialView: "dayGridMonth",
-      locale: "ja",
-      timeZone: "Asia/Tokyo",
-      headerToolbar: {
-        start: "today prev,next",
-        center: "title",
-        end: "createReportButton"
-      },
-      buttonText: {
-        today: "今日"
-      },
-      businessHours: true,
-      navLinks: false,
-      customButtons: {
-        createReportButton: {
-          text: "レポート作成"
-          // click: () => {
-          //   this.$router.push({ name: "ReportCreate" });
-          // }
-        }
-      }
-    };
-    commit(UPDATE_OPTIONS, options);
+  [INITIALIZE_OPTION]: ({ commit }) => {
+    const option = new CalendarEventOption(new Date());
+    commit(UPDATE_OPTION, option);
+  },
+
+  [UPDATE_NEXT_MONTH]: ({ commit }) => {
+    commit(UPDATE_NEXT_MONTH, 1);
+  },
+
+  [UPDATE_PREVIOUS_MONTH]: ({ commit }) => {
+    commit(UPDATE_NEXT_MONTH, -1);
   }
 };
 

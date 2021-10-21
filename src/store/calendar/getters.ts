@@ -1,11 +1,11 @@
 import { GetterTree } from "vuex";
-import { CalendarOptions } from "@fullcalendar/core";
+import { CalendarEventOption } from "@/models/calendar-event-option";
 import { RootState } from "@/store";
 import { CalendarState } from "@/store/calendar";
-import { CALENDAR_OPTIONS } from "@/store/calendar/constatnt";
+import { CALENDAR_OPTION } from "@/store/calendar/constatnt";
 
 const getters: GetterTree<CalendarState, RootState> = {
-  [CALENDAR_OPTIONS]: (state: CalendarState): CalendarOptions => {
+  [CALENDAR_OPTION]: (state: CalendarState): CalendarEventOption => {
     return state.options;
   }
 };
