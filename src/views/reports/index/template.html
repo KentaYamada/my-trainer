@@ -7,7 +7,12 @@
                 </h3>
             </header>
             <section class="page-body mt-5">
-                <v-calendar :options="options"></v-calendar>
+                <div class="calendar-header-container">
+                    <calendar-header></calendar-header>
+                </div>
+                <div class="calendar-events-container">
+                    <calendar-events></calendar-events>
+                </div>
             </section>
             <footer class="page-footer mt-5"></footer>
         </div>
