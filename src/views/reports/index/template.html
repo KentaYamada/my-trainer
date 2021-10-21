@@ -17,8 +17,9 @@
                     </calendar-header>
                 </div>
                 <div class="calendar-events-container">
-                    <calendar-events></calendar-events>
+                    <calendar-events :calendarEvents="calendarEvents"></calendar-events>
                 </div>
+                <b-loading :is-full-page="false" :active.sync="progressing"></b-loading>
             </section>
             <footer class="page-footer mt-5"></footer>
         </div>

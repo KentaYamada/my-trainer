@@ -1,4 +1,4 @@
-<table class="table is-fullwidth">
+<table class="table is-fullwidth is-narrow calendar-event">
     <thead>
         <tr>
             <th class="has-text-centered">日</th>
@@ -10,5 +10,16 @@
             <th class="has-text-centered">土</th>
         </tr>
     </thead>
-    <tbody></tbody>
+    <tbody>
+        <tr v-for="weeklyEvent in calendarEvents">
+            <td v-for="dailyEvent in weeklyEvent" :class="{ 'holiday': dailyEvent.day_of_week == 0, 'saturday': dailyEvent.day_of_week == 6 }">
+                <p class="event-day">{{ dailyEvent.day }}</p>
+                <p class="has-text-centered">
+                    <a class="has-text-grey" v-if="dailyEvent.reports.length > 0">
+                        <b-icon icon="circle"></b-icon>
+                    </a>
+                </p>
+            </td>
+        </tr>
+    </tbody>
 </table>
