@@ -2,10 +2,11 @@ import {
   addDoc,
   collection,
   doc,
-  endAt,
+  endBefore,
   getDoc,
   getDocs,
   query,
+  orderBy,
   runTransaction,
   startAt,
   CollectionReference,
@@ -79,7 +80,12 @@ export class ReportService {
   }
 
   static async fetch(fromDate: Date, toDate: Date): Promise<Report[]> {
-    const q: Query<Report> = query(ReportService.getCollection(), startAt(fromDate), endAt(toDate));
+    const q: Query<Report> = query(
+      ReportService.getCollection(),
+      orderBy("practice_date"),
+      startAt(fromDate),
+      endBefore(toDate)
+    );
     const snapshot: QuerySnapshot<Report> = await getDocs(q);
     return snapshot.docs.map((d: QueryDocumentSnapshot<Report>) => d.data());
   }

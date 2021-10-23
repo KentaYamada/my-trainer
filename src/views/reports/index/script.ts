@@ -69,6 +69,7 @@ export default Vue.extend({
       this.progressing = true;
       this.fetchCalendarEvents(this.calendarOption)
         .catch((error: FirestoreError) => {
+          console.error(error.message);
           const config: BNoticeConfig = {
             type: "is-danger",
             message: error.message

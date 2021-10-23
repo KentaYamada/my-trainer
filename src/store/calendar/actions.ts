@@ -22,6 +22,11 @@ const actions: ActionTree<CalendarState, RootState> = {
     const weeks = Math.ceil(lastDay.diff(firstDay, "days") / 7);
     const calendarEvents: CalendarEvent[][] = [];
 
+    const fromDate: Date = firstDay.set({ hour: 0, minute: 0, second: 0, millisecond: 0 }).toDate();
+    const toDate: Date = lastDay.add(1, "day").set({ hour: 0, minute: 0, second: 0, millisecond: 0 }).toDate();
+    const reports: Report[] = await ReportService.fetch(fromDate, toDate);
+    console.log(reports);
+
     for (let week = 0; week <= weeks; week++) {
       const weeklyEvent: CalendarEvent[] = [];
 
@@ -32,6 +37,7 @@ const actions: ActionTree<CalendarState, RootState> = {
           dailyEvent.event_date = firstDay.toDate();
           dailyEvent.day = firstDay.date();
           dailyEvent.day_of_week = firstDay.day();
+          dailyEvent.reports = reports.filter((report: Report) => moment(firstDay).isSame(report.practice_date, "day"));
           firstDay.add(1, "day");
         }
 
