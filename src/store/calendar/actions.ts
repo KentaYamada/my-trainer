@@ -22,13 +22,13 @@ const actions: ActionTree<CalendarState, RootState> = {
     const weeks = Math.ceil(lastDay.diff(firstDay, "days") / 7);
     const calendarEvents: CalendarEvent[][] = [];
 
-    for (let week = 0; week < weeks; week++) {
+    for (let week = 0; week <= weeks; week++) {
       const weeklyEvent: CalendarEvent[] = [];
 
       for (let day = 0; day < 7; day++) {
         const dailyEvent = new CalendarEvent("", null, 0, null, []);
 
-        if (day === firstDay.day()) {
+        if (day === firstDay.day() && firstDay.diff(lastDay) < 0) {
           dailyEvent.event_date = firstDay.toDate();
           dailyEvent.day = firstDay.date();
           dailyEvent.day_of_week = firstDay.day();
@@ -38,13 +38,9 @@ const actions: ActionTree<CalendarState, RootState> = {
         weeklyEvent.push(dailyEvent);
       }
 
-      // const fromDate: Date = moment(payload.current).startOf("month").toDate();
-      // const toDate: Date = moment(payload.current).startOf("month").toDate();
-      // const reports: Report[] = await ReportService.fetch(fromDate, toDate);
       calendarEvents.push(weeklyEvent);
     }
 
-    console.log(calendarEvents);
     commit(UPDATE_CALENDAR_EVENTS, calendarEvents);
   },
 
