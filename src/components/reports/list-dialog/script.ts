@@ -19,6 +19,10 @@ export default Vue.extend({
   methods: {
     handleClose(): void {
       this.$emit("close");
+    },
+    handleRedirectToDetail(reportId: string): void {
+      this.$emit("close");
+      this.$router.push({ name: "ReportDetail", params: { id: reportId } });
     }
   }
 });

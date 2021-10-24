@@ -1,1 +1,3 @@
-<p>{{ report.practice_time_from }}〜{{ report.practice_time_to }}</p>
+<p>
+    <a @click="handleRedirectToDetail">{{ report.practice_time_from | toTime }}〜{{ report.practice_time_to | toTime }}</a>
+</p>
