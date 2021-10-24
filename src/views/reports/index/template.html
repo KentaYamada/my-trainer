@@ -1,28 +1,25 @@
-<div class="container">
-    <div class="columns is-desktop is-centered">
-        <div class="column">
-            <header class="page-header">
-                <h3 class="title is-size-4">
-                    <b-icon pack="fas" icon="calendar"></b-icon>スケジュール
-                </h3>
-            </header>
-            <section class="page-body mt-5">
-                <div class="calendar-header-container">
-                    <calendar-header
-                        :current="calendarOption.current"
-                        @current="handleCurrent"
-                        @create-report="handleCreateReport"
-                        @next-month="handleNextMonth"
-                        @previous-month="handlePreviousMonth">
-                    </calendar-header>
-                </div>
-                <div class="calendar-events-container">
-                    <calendar-events :calendarEvents="calendarEvents"></calendar-events>
-                </div>
-                <b-loading :is-full-page="false" :active.sync="progressing"></b-loading>
-            </section>
-            <footer class="page-footer mt-5"></footer>
-        </div>
+<div class="columns is-desktop is-centered">
+    <div class="column">
+        <header class="page-header">
+            <h3 class="title is-size-4">
+                <b-icon pack="fas" icon="calendar"></b-icon>スケジュール
+            </h3>
+        </header>
+        <section class="page-body mt-5">
+            <div class="calendar-header-container">
+                <calendar-header
+                    :current="calendarOption.current"
+                    @current="handleCurrent"
+                    @create-report="handleCreateReport"
+                    @next-month="handleNextMonth"
+                    @previous-month="handlePreviousMonth">
+                </calendar-header>
+            </div>
+            <div class="calendar-events-container">
+                <calendar-events :calendarEvents="calendarEvents"></calendar-events>
+            </div>
+            <b-loading :is-full-page="false" :active.sync="progressing"></b-loading>
+        </section>
+        <footer class="page-footer mt-5"></footer>
     </div>
 </div>
-
