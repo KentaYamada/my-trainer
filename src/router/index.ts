@@ -35,6 +35,11 @@ const routes: Array<RouteConfig> = [
       id: router.params.id
     }),
     component: () => import(/* webpackChunkName: "report-edit" */ "@/views/reports/create/ReportCreateView.vue")
+  },
+  {
+    path: "/auth/signin",
+    name: "SignIn",
+    component: () => import(/* webpackChunkName: "sign-in" */ "@/views/auth/AuthView.vue")
   }
 ];
 
