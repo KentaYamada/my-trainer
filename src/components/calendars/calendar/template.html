@@ -12,16 +12,11 @@
     </thead>
     <tbody>
         <tr v-for="weeklyEvent in calendarEvents">
-            <td v-for="dailyEvent in weeklyEvent" :class="{ 'holiday': dailyEvent.day_of_week == 0, 'saturday': dailyEvent.day_of_week == 6 }">
-                <div v-if="dailyEvent.day > 0">
-                    <p class="event-day">{{ dailyEvent.day }}</p>
-                    <p class="has-text-centered">
-                        <a class="has-text-grey" v-if="dailyEvent.reports.length > 0">
-                            <b-icon icon="circle"></b-icon>
-                        </a>
-                    </p>
-                </div>
-            </td>
+            <calendar-daily-event
+                :dailyEvent="dailyEvent"
+                v-for="dailyEvent in weeklyEvent">
+            </calendar-daily-event>
         </tr>
     </tbody>
 </table>
+

@@ -1,0 +1,10 @@
+<td :class="{ saturday: isSaturday, holiday: isHoliday }">
+    <div v-if="visibleDailyEvent">
+        <p class="event-day">{{ dailyEvent.day }}</p>
+        <p class="has-text-centered">
+            <a class="has-text-grey" v-if="hasReport" @click="handleShowReports">
+                <b-icon icon="circle"></b-icon>
+            </a>
+        </p>
+    </div>
+</td>

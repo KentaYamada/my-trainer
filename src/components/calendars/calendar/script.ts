@@ -1,14 +1,14 @@
 import Vue, { PropType } from "vue";
-import CalendarEventComponent from "@/components/calendars/event/CalendarEvent.vue";
+import CalendarDailyEvent from "@/components/calendars/daily-event/CalendarDailyEvent.vue";
 import { CalendarEvent } from "@/models/calendar-event";
 
 /**
- * Calendar events component
+ * calendar component
  */
 export default Vue.extend({
-  name: "calendar-events",
+  name: "calendar",
   components: {
-    CalendarEventComponent
+    CalendarDailyEvent
   },
   props: {
     calendarEvents: {
@@ -16,5 +16,5 @@ export default Vue.extend({
       type: Array as PropType<CalendarEvent[][]>
     }
   },
-  template: "<calendar-events/>"
+  template: "<calendar/>"
 });
