@@ -79,7 +79,9 @@ export default Vue.extend({
           .then(() => {
             this._showToastSuccess("保存しました");
 
-            if (this.id !== "") {
+            if (this.id === "") {
+              this.$router.push("/");
+            } else {
               this.$router.push({ name: "ReportDetail", params: { id: this.id } });
             }
           })
