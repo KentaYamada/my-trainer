@@ -1,5 +1,5 @@
 <div id="app">
-    <navigation></navigation>
+    <navigation v-if="isSignIn"></navigation>
     <section class="section">
         <div class="container p-4">
             <router-view></router-view>
