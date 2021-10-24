@@ -1,5 +1,6 @@
 import Vue, { PropType } from "vue";
 import { BModalConfig } from "buefy/types/components";
+import ReportListDialog from "@/components/reports/list-dialog/ReportListDialog.vue";
 import { CalendarEvent } from "@/models/calendar-event";
 import { DAY_OF_WEEK } from "@/models/day-of-week";
 
@@ -33,7 +34,13 @@ export default Vue.extend({
   },
   methods: {
     handleShowReports(): void {
-      const config: BModalConfig = {};
+      const config: BModalConfig = {
+        parent: this,
+        component: ReportListDialog,
+        props: {
+          reports: this.dailyEvent.reports
+        }
+      };
       this.$buefy.modal.open(config);
     }
   },
