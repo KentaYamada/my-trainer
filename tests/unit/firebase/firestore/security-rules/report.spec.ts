@@ -26,6 +26,7 @@ describe("reports collection security tests", () => {
   describe("report document schema validation tests", () => {
     it("validate succeeded", async () => {
       const data: DocumentData = {
+        title: "test title",
         practice_date: new Date(),
         practice_time_from: new Date(),
         practice_time_to: new Date(),
@@ -44,6 +45,7 @@ describe("reports collection security tests", () => {
 
     it.each([
       {
+        title: "test title",
         practice_date: new Date(),
         practice_time_from: new Date(),
         practice_time_to: new Date(),
@@ -55,6 +57,7 @@ describe("reports collection security tests", () => {
         created_at: new Date()
       },
       {
+        title: "test title",
         practice_date: new Date(),
         practice_time_from: new Date(),
         practice_time_to: new Date(),
@@ -75,6 +78,7 @@ describe("reports collection security tests", () => {
 
     it.each([
       {
+        title: "test title",
         practice_date: null,
         practice_time_from: new Date(),
         practice_time_to: new Date(),
@@ -87,6 +91,7 @@ describe("reports collection security tests", () => {
         modified_at: new Date()
       },
       {
+        title: "test title",
         practice_date: "2021-01-01 00:00:00",
         practice_time_from: new Date(),
         practice_time_to: new Date(),
@@ -99,6 +104,7 @@ describe("reports collection security tests", () => {
         modified_at: new Date()
       },
       {
+        title: "test title",
         practice_date: new Date(),
         practice_time_from: null,
         practice_time_to: new Date(),
@@ -111,6 +117,7 @@ describe("reports collection security tests", () => {
         modified_at: new Date()
       },
       {
+        title: "test title",
         practice_date: new Date(),
         practice_time_from: "2021-01-01 10:00:00",
         practice_time_to: new Date(),
@@ -123,6 +130,7 @@ describe("reports collection security tests", () => {
         modified_at: new Date()
       },
       {
+        title: "test title",
         practice_date: new Date(),
         practice_time_from: new Date(),
         practice_time_to: null,
@@ -135,6 +143,7 @@ describe("reports collection security tests", () => {
         modified_at: new Date()
       },
       {
+        title: "test title",
         practice_date: new Date(),
         practice_time_from: new Date(),
         practice_time_to: "2021-01-01 11:00:00",
@@ -147,6 +156,7 @@ describe("reports collection security tests", () => {
         modified_at: new Date()
       },
       {
+        title: "test title",
         practice_date: new Date(),
         practice_time_from: new Date(),
         practice_time_to: new Date(),
@@ -159,6 +169,7 @@ describe("reports collection security tests", () => {
         modified_at: new Date()
       },
       {
+        title: "test title",
         practice_date: new Date(),
         practice_time_from: new Date(),
         practice_time_to: new Date(),
@@ -171,6 +182,7 @@ describe("reports collection security tests", () => {
         modified_at: new Date()
       },
       {
+        title: "test title",
         practice_date: new Date(),
         practice_time_from: new Date(),
         practice_time_to: new Date(),
@@ -183,6 +195,7 @@ describe("reports collection security tests", () => {
         modified_at: new Date()
       },
       {
+        title: "test title",
         practice_date: new Date(),
         practice_time_from: new Date(),
         practice_time_to: new Date(),
@@ -195,6 +208,7 @@ describe("reports collection security tests", () => {
         modified_at: new Date()
       },
       {
+        title: "test title",
         practice_date: new Date(),
         practice_time_from: new Date(),
         practice_time_to: new Date(),
@@ -207,6 +221,7 @@ describe("reports collection security tests", () => {
         modified_at: new Date()
       },
       {
+        title: "test title",
         practice_date: new Date(),
         practice_time_from: new Date(),
         practice_time_to: new Date(),
@@ -219,6 +234,7 @@ describe("reports collection security tests", () => {
         modified_at: new Date()
       },
       {
+        title: "test title",
         practice_date: new Date(),
         practice_time_from: new Date(),
         practice_time_to: new Date(),
@@ -231,6 +247,7 @@ describe("reports collection security tests", () => {
         modified_at: new Date()
       },
       {
+        title: "test title",
         practice_date: new Date(),
         practice_time_from: new Date(),
         practice_time_to: new Date(),
@@ -243,6 +260,7 @@ describe("reports collection security tests", () => {
         modified_at: new Date()
       },
       {
+        title: "test title",
         practice_date: new Date(),
         practice_time_from: new Date(),
         practice_time_to: new Date(),
@@ -255,6 +273,7 @@ describe("reports collection security tests", () => {
         modified_at: new Date()
       },
       {
+        title: "test title",
         practice_date: new Date(),
         practice_time_from: new Date(),
         practice_time_to: new Date(),
@@ -267,6 +286,7 @@ describe("reports collection security tests", () => {
         modified_at: new Date()
       },
       {
+        title: "test title",
         practice_date: new Date(),
         practice_time_from: new Date(),
         practice_time_to: new Date(),
@@ -290,6 +310,7 @@ describe("reports collection security tests", () => {
 
     beforeEach(async () => {
       const data: DocumentData = {
+        title: "test title",
         practice_date: new Date(),
         practice_time_from: new Date(),
         practice_time_to: new Date(),
@@ -320,6 +341,7 @@ describe("reports collection security tests", () => {
 
     beforeEach(async () => {
       const data: DocumentData = {
+        title: "test title",
         practice_date: new Date(),
         practice_time_from: new Date(),
         practice_time_to: new Date(),
@@ -350,6 +372,7 @@ describe("reports collection security tests", () => {
       const batch: WriteBatch = writeBatch(db);
       const docs: DocumentData[] = [
         {
+          title: "test title",
           practice_date: new Date(),
           practice_time_from: new Date(),
           practice_time_to: new Date(),
@@ -362,6 +385,7 @@ describe("reports collection security tests", () => {
           modified_at: new Date()
         },
         {
+          title: "test title",
           practice_date: new Date(),
           practice_time_from: new Date(),
           practice_time_to: new Date(),

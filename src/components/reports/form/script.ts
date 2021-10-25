@@ -17,6 +17,10 @@ export default Vue.extend({
     }
   },
   methods: {
+    handleUpdateTitle(value: string): void {
+      this.$emit("update-title", value);
+    },
+
     handleUpdatePracticeDate(value: Date): void {
       this.$emit("update-practice-date", value);
     },

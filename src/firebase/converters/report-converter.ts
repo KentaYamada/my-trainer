@@ -6,6 +6,7 @@ export const ReportConverter: FirestoreDataConverter<Report> = {
     const data = snapshot.data(options);
     return new Report(
       snapshot.id,
+      data.title,
       data.practice_date.toDate(),
       data.practice_time_from.toDate(),
       data.practice_time_to.toDate(),
@@ -20,6 +21,7 @@ export const ReportConverter: FirestoreDataConverter<Report> = {
   toFirestore: (payload: Report): DocumentData => {
     const today = new Date();
     const data: DocumentData = {
+      title: payload.title,
       practice_date: payload.practice_date,
       practice_time_from: payload.practice_time_from,
       practice_time_to: payload.practice_time_to,

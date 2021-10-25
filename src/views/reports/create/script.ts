@@ -16,7 +16,8 @@ import {
   UPDATE_PLAN,
   UPDATE_PRACTICE_DATE,
   UPDATE_PRACTICE_TIME_FROM,
-  UPDATE_PRACTICE_TIME_TO
+  UPDATE_PRACTICE_TIME_TO,
+  UPDATE_TITLE
 } from "@/store/report/constant";
 
 /**
@@ -67,7 +68,8 @@ export default Vue.extend({
       updatePlan: UPDATE_PLAN,
       updatePracticeDate: UPDATE_PRACTICE_DATE,
       updatePracticeTimeFrom: UPDATE_PRACTICE_TIME_FROM,
-      updatePracticeTimeTo: UPDATE_PRACTICE_TIME_TO
+      updatePracticeTimeTo: UPDATE_PRACTICE_TIME_TO,
+      updateTitle: UPDATE_TITLE
     }),
 
     handleSave(): void {
@@ -90,6 +92,10 @@ export default Vue.extend({
       } else {
         this._showToastDanger("入力内容に誤りがあります。エラーメッセージを確認してください");
       }
+    },
+
+    handleUpdateTitle(value: string): void {
+      this.updateTitle(value);
     },
 
     handleUpdatePracticeDate(value: Date): void {
@@ -142,6 +148,9 @@ export default Vue.extend({
   },
   validations: {
     report: {
+      title: {
+        required
+      },
       goal: {
         required
       },

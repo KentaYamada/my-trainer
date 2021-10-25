@@ -1,4 +1,16 @@
 <form>
+    <b-field label="タイトル" :type="{ 'is-danger': validations.report.title.$error }">
+        <template #message>
+            <div v-if="validations.report.title.$error">
+                <p v-if="!validations.report.title.required">タイトルを入力してください</p>
+            </div>
+        </template>
+        <b-input
+            type="text"
+            :value="report.title"
+            @input="handleUpdateTitle($event)">
+        </b-input>
+    </b-field>
     <b-field label="トレーニング日時">
         <template #message>
         </template>

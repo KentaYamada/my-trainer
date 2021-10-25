@@ -8,6 +8,8 @@ export const REPORT = "report";
 
 export const SAVE = "save";
 
+export const UPDATE_TITLE = "update-title";
+
 export const UPDATE_GOAL = "update-goal";
 
 export const UPDATE_IMPLESSIONS = "update-implessions";

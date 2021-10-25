@@ -3,6 +3,7 @@
  */
 export class Report {
   id: string;
+  title: string;
   practice_date: Date;
   practice_time_from: Date;
   practice_time_to: Date;
@@ -14,6 +15,7 @@ export class Report {
 
   constructor(
     id: string,
+    title: string,
     practiceDate: Date,
     practiceTimeFrom: Date,
     practiceTimeTo: Date,
@@ -24,6 +26,7 @@ export class Report {
     memo: string
   ) {
     this.id = id;
+    this.title = title;
     this.practice_date = practiceDate;
     this.practice_time_from = practiceTimeFrom;
     this.practice_time_to = practiceTimeTo;

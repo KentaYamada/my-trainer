@@ -9,6 +9,7 @@
             <report-form
                 :report="report"
                 :validations="$v"
+                @update-title="handleUpdateTitle"
                 @update-goal="handleUpdateGoal"
                 @update-implessions="handleUpdateImplessions"
                 @update-memo="handleUpdateMemo"

@@ -17,7 +17,8 @@ import {
   UPDATE_PRACTICE_DATE,
   UPDATE_PRACTICE_TIME_FROM,
   UPDATE_PRACTICE_TIME_TO,
-  UPDATE_REPORT
+  UPDATE_REPORT,
+  UPDATE_TITLE
 } from "@/store/report/constant";
 
 const actions: ActionTree<ReportState, RootState> = {
@@ -34,7 +35,7 @@ const actions: ActionTree<ReportState, RootState> = {
 
   [INITIALIZE]: ({ commit }) => {
     const today: Date = moment().set({ hour: 0, minute: 0, second: 0, millisecond: 0 }).toDate();
-    const payload = new Report("", today, today, today, "", "", "", "", "");
+    const payload = new Report("", "", today, today, today, "", "", "", "", "");
     commit(UPDATE_REPORT, payload);
   },
 
@@ -81,6 +82,10 @@ const actions: ActionTree<ReportState, RootState> = {
 
   [UPDATE_REPORT]: ({ commit }, payload: Report) => {
     commit(UPDATE_REPORT, payload);
+  },
+
+  [UPDATE_TITLE]: ({ commit }, payload: string) => {
+    commit(UPDATE_TITLE, payload);
   }
 };
 

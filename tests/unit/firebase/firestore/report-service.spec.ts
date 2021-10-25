@@ -25,7 +25,7 @@ describe("ReportService tests", () => {
 
   describe("create method tests", () => {
     it("[positive] create succeeded", async () => {
-      const payload = new Report("", new Date(), new Date(), new Date(), "test", "test", "test", "test", "test");
+      const payload = new Report("", "", new Date(), new Date(), new Date(), "test", "test", "test", "test", "test");
       await expect(ReportService.create(payload)).resolves.not.toBeUndefined();
     });
   });
@@ -51,12 +51,12 @@ describe("ReportService tests", () => {
     });
 
     it("[positive] edit succeeded", async () => {
-      const payload = new Report(ID, new Date(), new Date(), new Date(), "test", "test", "test", "test", "test");
+      const payload = new Report(ID, "", new Date(), new Date(), new Date(), "test", "test", "test", "test", "test");
       await expect(ReportService.edit(payload)).resolves.not.toBeUndefined();
     });
 
     it("[negative] report id is empty", async () => {
-      const payload = new Report("", new Date(), new Date(), new Date(), "test", "test", "test", "test", "test");
+      const payload = new Report("", "", new Date(), new Date(), new Date(), "test", "test", "test", "test", "test");
       await ReportService.edit(payload).catch((error: FirestoreError) => {
         expect(error.code).toBe("aborted");
         expect(error.name).toBe("BadRequest");
@@ -67,6 +67,7 @@ describe("ReportService tests", () => {
     it("[negative] report is not exists", async () => {
       const payload = new Report(
         "not_exist_document",
+        "test",
         new Date(),
         new Date(),
         new Date(),
@@ -89,6 +90,7 @@ describe("ReportService tests", () => {
 
     beforeEach(async () => {
       const payload: DocumentData = {
+          title: "test title",
         practice_date: new Date(),
         practice_time_from: new Date(),
         practice_time_to: new Date(),
@@ -133,6 +135,7 @@ describe("ReportService tests", () => {
 
     beforeEach(async () => {
       const payload: DocumentData = {
+          title: "test title"
         practice_date: new Date(),
         practice_time_from: new Date(),
         practice_time_to: new Date(),

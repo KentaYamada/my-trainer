@@ -10,7 +10,8 @@ import {
   UPDATE_PRACTICE_DATE,
   UPDATE_PRACTICE_TIME_FROM,
   UPDATE_PRACTICE_TIME_TO,
-  UPDATE_REPORT
+  UPDATE_REPORT,
+  UPDATE_TITLE
 } from "@/store/report/constant";
 
 const mutations: MutationTree<ReportState> = {
@@ -48,6 +49,10 @@ const mutations: MutationTree<ReportState> = {
 
   [UPDATE_REPORT]: (state: ReportState, payload: Report): void => {
     state.report = payload;
+  },
+
+  [UPDATE_TITLE]: (state: ReportState, payload: string): void => {
+    state.report.title = payload;
   }
 };
 
