@@ -1,0 +1,35 @@
+<div class="columns is-desktop is-centered">
+    <div class="column">
+        <header class="page-header">
+            <h3 class="title is-size-4">
+                <b-icon pack="fas" icon="level-up-alt"></b-icon>トレーニング日誌
+            </h3>
+        </header>
+        <section class="page-body mt-5">
+            <report-form
+                :report="report"
+                :validations="$v"
+                @update-title="handleUpdateTitle"
+                @update-goal="handleUpdateGoal"
+                @update-implessions="handleUpdateImplessions"
+                @update-memo="handleUpdateMemo"
+                @update-next-action="handleUpdateNextAction"
+                @update-plan="handleUpdatePlan"
+                @update-practice-date="handleUpdatePracticeDate"
+                @update-practice-time-from="handleUpdatePracticeTimeFrom"
+                @update-practice-time-to="handleUpdatePracticeTimeTo">
+            </report-form>
+        </section>
+        <footer class="page-footer mt-5">
+            <div class="buttons is-right">
+                <b-button
+                    type="is-info"
+                    icon-left="save"
+                    outlined
+                    @click="handleSave">
+                    保存する
+                </b-button>
+            </div>
+        </footer>
+    </div>
+</div>

@@ -1,0 +1,22 @@
+<div class="columns is-desktop is-centered">
+    <div class="column">
+        <header class="page-header">
+        </header>
+        <section class="page-body mt-5">
+            <div class="calendar-header-container">
+                <calendar-header
+                    :current="calendarOption.current"
+                    @current="handleCurrent"
+                    @create-report="handleCreateReport"
+                    @next-month="handleNextMonth"
+                    @previous-month="handlePreviousMonth">
+                </calendar-header>
+            </div>
+            <div class="calendar-events-container">
+                <calendar :calendarEvents="calendarEvents"></calendar>
+            </div>
+            <b-loading :is-full-page="false" :active.sync="progressing"></b-loading>
+        </section>
+        <footer class="page-footer mt-5"></footer>
+    </div>
+</div>

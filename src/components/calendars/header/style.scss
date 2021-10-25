@@ -1,0 +1,20 @@
+.calendar-header {
+    .current {
+        font-size: 1.4rem;
+        font-weight: 700;
+        text-align: center;
+    }
+    .step-button {
+        border: none;
+        background-color: #fff;
+        font-size: 1.4rem;
+        font-weight: 700;
+
+        &.prev {
+            margin-right: 0.2rem;
+        }
+        &.next {
+            margin-left: 0.2rem;
+        }
+    }
+}

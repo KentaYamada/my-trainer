@@ -1,0 +1,24 @@
+<div class="columns is-desktop is-centered">
+    <div class="column">
+        <header class="page-header">
+            <h3 class="title is-size-4">
+                <b-icon pack="fas" icon="file-alt"></b-icon>トレーニング日誌
+            </h3>
+            <router-link to="/">一覧へ戻る</router-link>
+        </header>
+        <section class="page-body mt-5">
+            <report-detail :report="report"></report-detail>
+            <b-loading :is-full-page="false" :active.sync="progressing"></b-loading>
+        </section>
+        <footer class="page-footer mt-5">
+            <div class="buttons is-right">
+                <b-button type="is-danger" icon-left="trash" outlined @click="handleDelete">
+                    レポートを削除
+                </b-button>
+                <b-button type="is-info" icon-left="edit" outlined @click="handleEdit">
+                    レポートを編集
+                </b-button>
+            </div>
+        </footer>
+    </div>
+</div>

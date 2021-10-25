@@ -1,0 +1,22 @@
+<table class="table is-fullwidth is-narrow calendar-event">
+    <thead>
+        <tr>
+            <th class="has-text-centered">日</th>
+            <th class="has-text-centered">月</th>
+            <th class="has-text-centered">火</th>
+            <th class="has-text-centered">水</th>
+            <th class="has-text-centered">木</th>
+            <th class="has-text-centered">金</th>
+            <th class="has-text-centered">土</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr v-for="weeklyEvent in calendarEvents">
+            <calendar-daily-event
+                :dailyEvent="dailyEvent"
+                v-for="dailyEvent in weeklyEvent">
+            </calendar-daily-event>
+        </tr>
+    </tbody>
+</table>
+

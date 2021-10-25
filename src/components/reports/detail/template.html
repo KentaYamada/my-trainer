@@ -1,0 +1,26 @@
+<div class="report-detail">
+    <div class="content-group">
+        <h4 class="is-size-4">練習日時</h4>
+        <p>{{ report.practice_date | toDate }} {{ report.practice_time_from | toTime }}〜{{ report.practice_time_to | toTime }}</p>
+    </div>
+    <div class="content-group">
+        <h4 class="is-size-4">ゴール</h4>
+        <p v-html="goal"></p>
+    </div>
+    <div class="content-group">
+        <h4 class="is-size-4">メニュー</h4>
+        <p v-html="plan"></p>
+    </div>
+    <div class="content-group">
+        <h4 class="is-size-4">調子・気づき</h4>
+        <p v-html="implessions"></p>
+    </div>
+    <div class="content-group">
+        <h4 class="is-size-4">次のアクション</h4>
+        <p v-html="next_action"></p>
+    </div>
+    <div class="content-group">
+        <h4 class="is-size-4">メモ</h4>
+        <p v-html="memo"></p>
+    </div>
+</div>
