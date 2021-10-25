@@ -35,7 +35,10 @@ export default Vue.extend({
   mounted() {
     this.progressing = true;
     this.fetchReportById(this.id)
-      .catch((error: FirestoreError) => this._showToastDanger(error.message))
+      .catch((error: FirestoreError) => {
+        this._showToastDanger(error.message);
+        this.$router.push({ name: "NotFound" });
+      })
       .finally(() => (this.progressing = false));
   },
   methods: {
