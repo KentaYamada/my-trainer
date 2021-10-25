@@ -9,5 +9,5 @@ export const toDate = (payload: Date): string => {
 };
 
 export const toTime = (payload: Date): string => {
-  return moment(payload).format("HH:MM");
+  return moment(payload).format("HH:mm");
 };
