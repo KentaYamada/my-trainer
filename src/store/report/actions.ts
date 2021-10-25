@@ -1,3 +1,4 @@
+import moment from "moment";
 import { ActionTree } from "vuex";
 import { Report } from "@/models/report";
 import { ReportService } from "@/firebase/report-service";
@@ -32,7 +33,8 @@ const actions: ActionTree<ReportState, RootState> = {
   },
 
   [INITIALIZE]: ({ commit }) => {
-    const payload = new Report("", new Date(), new Date(), new Date(), "", "", "", "", "");
+    const today: Date = moment().set({ hour: 0, minute: 0, second: 0, millisecond: 0 }).toDate();
+    const payload = new Report("", today, today, today, "", "", "", "", "");
     commit(UPDATE_REPORT, payload);
   },
 
