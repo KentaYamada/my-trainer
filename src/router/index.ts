@@ -40,6 +40,11 @@ const routes: Array<RouteConfig> = [
     path: "/auth/signin",
     name: "SignIn",
     component: () => import(/* webpackChunkName: "sign-in" */ "@/views/auth/AuthView.vue")
+  },
+  {
+    path: "*",
+    name: "NotFound",
+    component: () => import(/* webpackChunkName: "notfound" */ "@/views/notfound/NotFoundView.vue")
   }
 ];
 
