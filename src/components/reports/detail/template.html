@@ -1,5 +1,9 @@
 <div class="report-detail">
     <div class="content-group">
+        <h4 class="is-size-4">練習日時</h4>
+        <p>{{ report.practice_date | toDate }} {{ report.practice_time_from | toTime }}〜{{ report.practice_time_to | toTime }}</p>
+    </div>
+    <div class="content-group">
         <h4 class="is-size-4">ゴール</h4>
         <p v-html="goal"></p>
     </div>

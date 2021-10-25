@@ -1,4 +1,5 @@
 import Vue, { PropType } from "vue";
+import { toDate, toTime } from "@/filters/date-format";
 import { nl2br } from "@/filters/nl2br";
 import { Report } from "@/models/report";
 
@@ -14,7 +15,9 @@ export default Vue.extend({
     }
   },
   filters: {
-    nl2br
+    nl2br,
+    toDate,
+    toTime
   },
   computed: {
     goal(): string {
