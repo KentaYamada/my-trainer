@@ -9,13 +9,16 @@ const actions: ActionTree<AuthState, RootState> = {
     const auth: Auth = getAuth();
     const provider = new GoogleAuthProvider();
     return await signInWithPopup(auth, provider).then((data: UserCredential) => {
-      commit(UPDATE_AUTH_USER, data.user);
+      commit(UPDATE_AUTH_USER, data.user.toJSON());
     });
   },
 
   [SIGN_OUT]: async ({ commit }) => {
+    // eslint-disable-line no-unused-vars
     const auth: Auth = getAuth();
-    return await signOut(auth);
+    return await signOut(auth).then(() => {
+      commit(UPDATE_AUTH_USER, null);
+    });
   }
 };
 

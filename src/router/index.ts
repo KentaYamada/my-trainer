@@ -1,5 +1,6 @@
 import Vue from "vue";
 import VueRouter, { RouteConfig, Route, NavigationGuardNext, RouteRecord } from "vue-router";
+import { getAuth, onAuthStateChanged, Auth, User } from "firebase/auth";
 import store from "@/store";
 
 Vue.use(VueRouter);
@@ -73,14 +74,16 @@ const router = new VueRouter({
 router.beforeEach((to: Route, from: Route, next: NavigationGuardNext<Vue>) => {
   // eslint-disable-line no-unused-vars
   const requireAuth: boolean = to.matched.some((record: RouteRecord) => record.meta.requireAuth);
-  const isSignedIn: boolean = store.getters["auth/is-sign-in"];
-
   if (requireAuth) {
-    if (isSignedIn) {
-      next();
-    } else {
-      next("/auth/signin");
-    }
+    const auth: Auth = getAuth();
+    onAuthStateChanged(auth, (user: User | null) => {
+      if (user) {
+        store.commit("auth/update-auth-user", user.toJSON());
+        next();
+      } else {
+        next("/auth/signin");
+      }
+    });
   } else {
     next();
   }
