@@ -90,7 +90,7 @@ describe("ReportService tests", () => {
 
     beforeEach(async () => {
       const payload: DocumentData = {
-          title: "test title",
+        title: "test title",
         practice_date: new Date(),
         practice_time_from: new Date(),
         practice_time_to: new Date(),
@@ -135,7 +135,7 @@ describe("ReportService tests", () => {
 
     beforeEach(async () => {
       const payload: DocumentData = {
-          title: "test title"
+        title: "test title",
         practice_date: new Date(),
         practice_time_from: new Date(),
         practice_time_to: new Date(),
