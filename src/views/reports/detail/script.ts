@@ -61,7 +61,10 @@ export default Vue.extend({
         onConfirm: () => {
           this.progressing = true;
           this.delete(this.id)
-            .then(() => this._showToastSuccess("削除しました"))
+            .then(() => {
+              this._showToastSuccess("削除しました");
+              this.$router.push("/");
+            })
             .catch((error: FirestoreError) => this._showToastDanger(error.message))
             .finally(() => (this.progressing = false));
         }
