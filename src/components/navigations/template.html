@@ -4,4 +4,9 @@
             <b-icon pack="fas" icon="level-up-alt"></b-icon>My Trainer
         </b-navbar-item>
     </template>
+    <template #end>
+        <div class="buttons">
+            <b-button icon-left="door-closed" @click="handleSignOut">サインアウト</b-button>
+        </div>
+    </template>
 </b-navbar>
