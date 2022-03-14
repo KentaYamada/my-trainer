@@ -31,9 +31,7 @@ service cloud.firestore {
                (payload.plan is string) &&
                (payload.plan != "") &&
                (payload.implessions is string) &&
-               (payload.implessions != "") &&
                (payload.next_action is string) &&
-               (payload.next_action != "") &&
                (payload.memo is string) &&
                (payload.created_at is timestamp) &&
                (payload.modified_at is timestamp);
