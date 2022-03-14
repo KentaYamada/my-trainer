@@ -14,6 +14,7 @@
         <tr v-for="weeklyEvent in calendarEvents">
             <calendar-daily-event
                 :dailyEvent="dailyEvent"
+                :key="dailyEvent.id"
                 v-for="dailyEvent in weeklyEvent">
             </calendar-daily-event>
         </tr>

@@ -1,5 +1,5 @@
 import { GetterTree } from "vuex";
-import { getAuth, User } from "firebase/auth";
+import { User } from "firebase/auth";
 import { RootState } from "@/store";
 import { AuthState } from "@/store/auth";
 import { AUTH_USER, IS_SIGN_IN } from "@/store/auth/constatnt";

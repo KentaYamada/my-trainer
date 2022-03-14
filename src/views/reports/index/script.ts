@@ -3,7 +3,6 @@ import { mapActions, mapGetters } from "vuex";
 import { BNoticeConfig } from "buefy/types/components";
 import { FirestoreError } from "firebase/firestore";
 import Calendar from "@/components/calendars/calendar/Calendar.vue";
-import CalendarEvents from "@/components/calendars/events/CalendarEvents.vue";
 import CalendarHeader from "@/components/calendars/header/CalendarHeader.vue";
 import {
   CALENDAR_EVENTS,
