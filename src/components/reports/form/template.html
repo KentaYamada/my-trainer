@@ -62,24 +62,14 @@
             @input="handleUpdatePlan($event)">
         </b-input>
     </b-field>
-    <b-field label="調子・気づき" :type="{ 'is-danger': validations.report.implessions.$error }">
-        <template #message>
-            <div v-if="validations.report.implessions.$error">
-                <p v-if="!validations.report.implessions.required">調子・気づきを入力してください</p>
-            </div>
-        </template>
+    <b-field label="調子・気づき">
         <b-input
             type="textarea"
             :value="report.implessions"
             @input="handleUpdateImplessions($event)">
         </b-input>
     </b-field>
-    <b-field label="次のアクション" :type="{ 'is-danger': validations.report.next_action.$error }">
-        <template #message>
-            <div v-if="validations.report.next_action.$error">
-                <p v-if="!validations.report.next_action.required">次のアクションを入力してください</p>
-            </div>
-        </template>
+    <b-field label="次のアクション">
         <b-input
             type="textarea"
             :value="report.next_action"

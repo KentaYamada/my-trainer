@@ -1,4 +1,5 @@
 import Vue, { PropType } from "vue";
+import { RuleDecl } from "vue/types/options";
 import { Report } from "@/models/report";
 
 /**
@@ -13,7 +14,7 @@ export default Vue.extend({
     },
     validations: {
       required: true,
-      type: Object
+      type: Object as PropType<RuleDecl>
     }
   },
   methods: {

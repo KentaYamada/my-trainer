@@ -156,12 +156,6 @@ export default Vue.extend({
       },
       plan: {
         required
-      },
-      implessions: {
-        required
-      },
-      next_action: {
-        required
       }
     }
   }
