@@ -9,15 +9,15 @@
             <report-form
                 :report="report"
                 :validations="$v"
-                @update-title="handleUpdateTitle"
-                @update-goal="handleUpdateGoal"
-                @update-implessions="handleUpdateImplessions"
-                @update-memo="handleUpdateMemo"
-                @update-next-action="handleUpdateNextAction"
-                @update-plan="handleUpdatePlan"
-                @update-practice-date="handleUpdatePracticeDate"
-                @update-practice-time-from="handleUpdatePracticeTimeFrom"
-                @update-practice-time-to="handleUpdatePracticeTimeTo">
+                :updateTitleHandler="handleUpdateTitle"
+                :updateGoalHandler="handleUpdateGoal"
+                :updateImplessionsHandler="handleUpdateImplessions"
+                :updateMemoHandler="handleUpdateMemo"
+                :updateNextActionHandler="handleUpdateNextAction"
+                :updatePlanHandler="handleUpdatePlan"
+                :updatePracticeDateHandler="handleUpdatePracticeDate"
+                :updatePracticeTimeFromHandler="handleUpdatePracticeTimeFrom"
+                :updatePracticeTimeToHandler="handleUpdatePracticeTimeTo">
             </report-form>
         </section>
         <footer class="page-footer mt-5">

@@ -15,43 +15,42 @@ export default Vue.extend({
     validations: {
       required: true,
       type: Object as PropType<RuleDecl>
-    }
-  },
-  methods: {
-    handleUpdateTitle(value: string): void {
-      this.$emit("update-title", value);
     },
-
-    handleUpdatePracticeDate(value: Date): void {
-      this.$emit("update-practice-date", value);
+    updateTitleHandler: {
+      required: true,
+      type: Function
     },
-
-    handleUpdatePracticeTimeFrom(value: Date): void {
-      this.$emit("update-practice-time-from", value);
+    updateGoalHandler: {
+      required: true,
+      type: Function
     },
-
-    handleUpdatePracticeTimeTo(value: Date): void {
-      this.$emit("update-practice-time-to", value);
+    updateImplessionsHandler: {
+      required: true,
+      type: Function
     },
-
-    handleUpdateGoal(value: string): void {
-      this.$emit("update-goal", value);
+    updateMemoHandler: {
+      required: true,
+      type: Function
     },
-
-    handleUpdatePlan(value: string): void {
-      this.$emit("update-plan", value);
+    updateNextActionHandler: {
+      required: true,
+      type: Function
     },
-
-    handleUpdateImplessions(value: string): void {
-      this.$emit("update-implessions", value);
+    updatePlanHandler: {
+      required: true,
+      type: Function
     },
-
-    handleUpdateNextAction(value: string): void {
-      this.$emit("update-next-action", value);
+    updatePracticeDateHandler: {
+      required: true,
+      type: Function
     },
-
-    handleUpdateMemo(value: string): void {
-      this.$emit("update-memo", value);
+    updatePracticeTimeFromHandler: {
+      required: true,
+      type: Function
+    },
+    updatePracticeTimeToHandler: {
+      required: true,
+      type: Function
     }
   },
   template: "<report-form/>"
